@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 import Category from '../models/Category.js'
 
 export function create(req, res) {
-    console.log(req.body)
     const category = new Category({
         _id: mongoose.Types.ObjectId(),
         title: req.body.title,

@@ -4,6 +4,8 @@ import bodyParser from 'body-parser'
 import logger from 'morgan'
 import mongoose from 'mongoose'
 import CategoryRouter from './routes/category.js'
+import AuthRouter from './routes/auth.js'
+import { verifyToken } from './app/middlewares/verifyToken.js'
 
 dotenv.config()
 
@@ -29,7 +31,10 @@ mongoose
 
 //  Router
 
-app.use('/api/category/', CategoryRouter)
+app.use('/api/category/', verifyToken, CategoryRouter)
+
+//auth
+app.use('/api/auth/', AuthRouter)
 
 app.listen(port, () => {
     console.log(port)
